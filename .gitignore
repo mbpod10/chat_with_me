@@ -1,0 +1,114 @@
+# Ignore Python bytecode files
+*.pyc
+*.pyo
+__pycache__
+
+# Ignore the virtual environment directory
+# Ignore Python bytecode files
+*.pyc
+*.pyo
+__pycache__
+
+# Ignore the virtual environment directory
+venv/
+env/
+*.env
+.env
+
+# Ignore local development settings
+*.sqlite3
+*.db
+*.log
+
+# Ignore static files and media uploads
+staticfiles/
+media/
+
+# Ignore third-party dependencies installed with pip or other package managers
+lib/
+bin/
+include/
+*.egg-info/
+dist/
+build/
+*.egg
+*.egg-info
+.eggs/
+pip-log.txt
+
+# Ignore any IDE or text editor-specific files
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+*.komodoproject
+*.tmproj
+*.pydevproject
+*.settings/
+*.project
+*.pyt
+*.pydev
+*.tmproject
+*.iml
+*.ipr
+
+# Ignore configuration files with sensitive information
+*.key
+*.pem
+*.crt
+*.csr
+*.cer
+*.conf
+*.conf.sample
+
+# Ignore generated documentation
+docs/_build/
+
+# Ignore local development settings
+*.sqlite3
+*.db
+*.log
+
+# Ignore static files and media uploads
+staticfiles/
+media/
+
+# Ignore third-party dependencies installed with pip or other package managers
+lib/
+bin/
+include/
+*.egg-info/
+dist/
+build/
+*.egg
+*.egg-info
+.eggs/
+pip-log.txt
+
+# Ignore any IDE or text editor-specific files
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+*.komodoproject
+*.tmproj
+*.pydevproject
+*.settings/
+*.project
+*.pyt
+*.pydev
+*.tmproject
+*.iml
+*.ipr
+
+# Ignore configuration files with sensitive information
+*.key
+*.pem
+*.crt
+*.csr
+*.cer
+*.conf
+*.conf.sample
+
+# Ignore generated documentation
+docs/_build/
