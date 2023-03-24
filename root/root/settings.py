@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,8 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-def configure():
-    load_dotenv()
+load_dotenv(find_dotenv())
+
 SECRET_KEY = f"{os.getenv('SECRET_KEY')}"
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -80,8 +80,12 @@ WSGI_APPLICATION = 'root.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': f"{os.getenv('DB_NAME')}",         
+        'USER': f"{os.getenv('DB_USERNAME')}",
+        'PASSWORD': f"{os.getenv('DB_PASSWORD')}",       
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
