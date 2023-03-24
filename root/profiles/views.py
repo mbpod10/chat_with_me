@@ -1,8 +1,27 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .serializers import ChatRoomSerializer, MessageSerializer
+from .serializers import ChatRoomSerializer, MessageSerializer, UserSerializer
 from rest_framework.parsers import JSONParser
-from .models import ChatRoom, Message
+from rest_framework import generics
+from .models import ChatRoom, Message, ChatRoomUser
+from django.contrib.auth.models import User
+
+"""display the users that belong to a chatroom"""
+class ChatroomUserListView(generics.ListAPIView):
+    
+    serializer_class = UserSerializer
+
+    def get_queryset(self):
+      chatroom_id = self.kwargs.get('chatroom_id')
+      chatroom = ChatRoom.objects.get(id=chatroom_id)
+      chatroom_users = ChatRoomUser.objects.filter(chatroom=chatroom)
+      user_ids = [chatroom_user.user.id for chatroom_user in chatroom_users]     
+      return User.objects.filter(id__in=user_ids)      
+
+    def list(self, request, *args, **kwargs):        
+        queryset = self.get_queryset()
+        serializer = self.get_serializer(queryset, many=True)
+        return JsonResponse(serializer.data, safe=False)
 
 @csrf_exempt
 def chatroom_list(request):
