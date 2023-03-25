@@ -114,3 +114,5 @@ pip-log.txt
 # Ignore generated documentation
 docs/_build/
 COMMANDS.md
+data.json
+front-end.js

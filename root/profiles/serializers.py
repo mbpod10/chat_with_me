@@ -24,10 +24,19 @@ class ChatRoomSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class MessageSerializer(serializers.ModelSerializer):
-    
+    user = serializers.SerializerMethodField()
+
     class Meta:
         model = Message
-        fields = '__all__'
+        fields = ['id', 'text', 'created_at', 'user']
+
+    def get_user(self, obj):
+        user = obj.user
+        return {
+            'username': user.username,
+            'firstname': user.first_name,
+            'lastname': user.last_name
+        }
 
 class ChatRoomUserSerializer(serializers.ModelSerializer):
     

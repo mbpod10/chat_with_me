@@ -6,9 +6,18 @@ from rest_framework import generics
 from .models import ChatRoom, Message, ChatRoomUser
 from django.contrib.auth.models import User
 
-"""display the users that belong to a chatroom"""
-class ChatroomUserListView(generics.ListAPIView):
-    
+"""given a chatroom, show all messages as well as user information of message author"""
+class ChatroomMessagesView(generics.ListAPIView):
+    serializer_class = MessageSerializer
+
+    def get_queryset(self):
+        chatroom_id = self.kwargs.get('chatroom_id')
+        chatroom = ChatRoom.objects.get(id=chatroom_id)
+        messages = Message.objects.filter(chatroom=chatroom).order_by("-created_at")
+        return messages
+
+"""display users that belong to a chatroom"""
+class ChatroomUserListView(generics.ListAPIView):    
     serializer_class = UserSerializer
 
     def get_queryset(self):
